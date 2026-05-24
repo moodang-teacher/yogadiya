@@ -565,10 +565,11 @@ export default function MemberHomePage() {
 
 			{resultModal?.open && (
 				<ResultModal
-					type={resultModal.type}
-					title={resultModal.title}
-					description={resultModal.desc}
-					onClose={() => setResultModal(null)}
+					open={resultModal?.open ?? false}
+					type={resultModal?.type ?? 'success'}
+					title={resultModal?.title ?? ''}
+					description={resultModal?.desc}
+					onConfirm={() => setResultModal(null)}
 				/>
 			)}
 		</div>

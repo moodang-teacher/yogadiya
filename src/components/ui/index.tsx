@@ -117,7 +117,14 @@ export function ResultModal({
 // ── Badge / Chip ───────────────────────────────────────────
 
 interface BadgeProps {
-	variant?: 'default' | 'primary' | 'secondary' | 'error' | 'surface';
+	variant?:
+		| 'default'
+		| 'primary'
+		| 'secondary'
+		| 'error'
+		| 'surface'
+		| 'warning'
+		| 'success';
 	size?: 'sm' | 'md';
 	children: React.ReactNode;
 	className?: string;
@@ -141,6 +148,8 @@ export function Badge({
 					'bg-secondary-container text-on-secondary-container',
 				variant === 'error' && 'bg-error-container text-on-error-container',
 				variant === 'surface' && 'bg-surface-container text-on-surface-variant',
+				variant === 'warning' && 'bg-accent text-white',
+				variant === 'success' && 'bg-primary text-on-primary',
 				className,
 			)}
 		>

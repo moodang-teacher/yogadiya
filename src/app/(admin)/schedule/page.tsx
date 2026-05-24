@@ -259,13 +259,15 @@ export default function SchedulePage() {
 									}
 								/>
 							) : (
-								selectedDateSessions.map((session) => (
-									<ClassCard
-										key={session.id}
-										session={session}
-										href={`/schedule/${session.id}`}
-									/>
-								))
+								<div className="flex flex-col gap-3">
+									{selectedDateSessions.map((session) => (
+										<ClassCard
+											key={session.id}
+											session={session}
+											href={`/schedule/${session.id}`}
+										/>
+									))}
+								</div>
 							)}
 						</div>
 					</>
@@ -378,13 +380,15 @@ export default function SchedulePage() {
 							) : selectedDateSessions.length === 0 ? (
 								<EmptyState title="이 날은 수업이 없습니다" />
 							) : (
-								selectedDateSessions.map((session) => (
-									<ClassCard
-										key={session.id}
-										session={session}
-										href={`/schedule/${session.id}`}
-									/>
-								))
+								<div className="flex flex-col gap-3">
+									{selectedDateSessions.map((session) => (
+										<ClassCard
+											key={session.id}
+											session={session}
+											href={`/schedule/${session.id}`}
+										/>
+									))}
+								</div>
 							)}
 						</div>
 					</>

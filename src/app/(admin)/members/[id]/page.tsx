@@ -22,7 +22,10 @@ interface MemberPassWithType extends MemberPass {
 	pass_type: PassType;
 }
 
-interface BookingWithSession extends Booking {
+interface BookingWithSession {
+	id: string;
+	status: string;
+	pass_id: string | null;
 	session: {
 		name: string;
 		session_date: string;

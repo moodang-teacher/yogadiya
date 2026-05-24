@@ -18,7 +18,14 @@ import {
 import { formatPhone, formatTime, cn } from '@/lib/utils';
 import type { ClassSession, Booking } from '@/types';
 
-interface BookingWithMember extends Booking {
+interface BookingWithMember {
+	id: string;
+	status: string;
+	pass_id: string | null;
+	booked_at: string;
+	session_id: string;
+	member_id: string;
+	waitlist_order: number | null;
 	member: { id: string; name: string; phone: string };
 	pass: { remaining_count: number | null } | null;
 }

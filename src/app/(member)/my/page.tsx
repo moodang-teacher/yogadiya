@@ -10,7 +10,7 @@ import { Badge, EmptyState, Spinner } from '@/components/ui';
 import { formatPhone, cn } from '@/lib/utils';
 import type { Booking, MemberPass, PassType } from '@/types';
 
-interface BookingWithSession extends Booking {
+interface BookingWithSession extends Omit<Booking, 'session'> {
 	session: {
 		name: string;
 		session_date: string;

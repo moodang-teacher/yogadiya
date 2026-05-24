@@ -173,16 +173,7 @@ export default function MemberDetailPage() {
 		const booking = bookings.find((b) => b.id === bookingId);
 		if (!booking?.pass_id) return;
 
-		await supabase
-			.from('bookings')
-			.update({ status: 'cancelled', note: '관리자 노쇼 취소' })
-			.eq('id', bookingId);
-
-		await supabase
-			.from('member_passes')
-			.update({ remaining_count: supabase.rpc as any });
-
-		// 간단하게: 해당 pass의 remaining_count +1
+		// 1. 횟수 복구: 현재 값 조회 후 +1
 		const { data: passData } = await supabase
 			.from('member_passes')
 			.select('remaining_count')
@@ -196,6 +187,7 @@ export default function MemberDetailPage() {
 				.eq('id', booking.pass_id);
 		}
 
+		// 2. 예약 상태 변경
 		await supabase
 			.from('bookings')
 			.update({ status: 'cancelled', note: '관리자 노쇼 취소' })

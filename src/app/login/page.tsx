@@ -18,9 +18,11 @@ export default function LoginPage() {
 	const { signIn, profile } = useAuth();
 	const router = useRouter();
 
-	// profile이 채워지면 역할에 따라 이동
+	const profileTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
 	useEffect(() => {
 		if (!profile) return;
+		if (profileTimeoutRef.current) clearTimeout(profileTimeoutRef.current);
 		if (profile.role === 'member') {
 			router.replace('/home');
 		} else {
@@ -90,7 +92,12 @@ export default function LoginPage() {
 			setIsLoading(false);
 			return;
 		}
-		// 이동은 위의 useEffect(profile)에서 처리
+		// 5초 내에 profile이 안 채워지면 스피너 해제
+		profileTimeoutRef.current = setTimeout(() => {
+			setIsLoading(false);
+			setError('프로필 정보를 불러올 수 없습니다. 다시 시도해주세요.');
+			setPin('');
+		}, 5000);
 	};
 
 	return (

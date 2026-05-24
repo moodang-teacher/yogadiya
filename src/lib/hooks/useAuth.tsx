@@ -63,9 +63,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 			.select('*')
 			.eq('id', userId)
 			.single()
-			.then(({ data }) => {
+			.then(({ data, error }) => {
 				if (cancelled) return;
-				setProfile(data);
+				if (error || !data) {
+					console.error('프로필 조회 실패:', error?.message);
+					setProfile(null);
+				} else {
+					setProfile(data);
+				}
 				setIsLoading(false);
 			});
 		return () => {

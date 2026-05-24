@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		color-scheme: light;
+	}
+
+	* {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	html {
+		-webkit-text-size-adjust: 100%;
+	}
+
+	body {
+		@apply bg-background text-on-surface font-sans;
+		font-feature-settings: 'kern' 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* 모바일 기본 */
+	#__next,
+	main {
+		min-height: 100dvh;
+	}
+}
+
+@layer components {
+	/* ── 버튼 ─────────────────────────────────── */
+	.btn-primary {
+		@apply w-full py-4 rounded-lg bg-primary text-on-primary
+           text-label-lg font-semibold tracking-wide
+           transition-all duration-150 active:scale-[0.98]
+           disabled:opacity-40 disabled:cursor-not-allowed;
+	}
+
+	.btn-secondary {
+		@apply w-full py-4 rounded-lg bg-secondary-container text-on-secondary-container
+           text-label-lg font-semibold tracking-wide
+           transition-all duration-150 active:scale-[0.98];
+	}
+
+	.btn-ghost {
+		@apply w-full py-4 rounded-lg border border-outline-variant text-on-surface
+           text-label-lg font-semibold
+           transition-all duration-150 active:scale-[0.98];
+	}
+
+	.btn-icon {
+		@apply flex items-center justify-center w-10 h-10 rounded-full
+           transition-all duration-150 active:scale-90
+           hover:bg-surface-container;
+	}
+
+	/* ── 인풋 ─────────────────────────────────── */
+	.input-field {
+		@apply w-full px-4 py-3.5 rounded-lg
+           bg-surface-container-low border border-outline-variant
+           text-body-md text-on-surface placeholder:text-on-surface-variant
+           focus:outline-none focus:border-primary focus:border-2
+           transition-colors duration-150;
+	}
+
+	/* ── 카드 ─────────────────────────────────── */
+	.card {
+		@apply bg-surface-container-lowest rounded-lg border border-outline-variant shadow-card;
+	}
+
+	.card-hover {
+		@apply card transition-shadow duration-150 hover:shadow-card-hover active:scale-[0.99];
+	}
+
+	/* ── 배지/칩 ─────────────────────────────── */
+	.chip {
+		@apply inline-flex items-center px-3 py-1 rounded-full text-label-sm font-medium;
+	}
+
+	.chip-primary {
+		@apply chip bg-primary text-on-primary;
+	}
+
+	.chip-secondary {
+		@apply chip bg-secondary-container text-on-secondary-container;
+	}
+
+	.chip-surface {
+		@apply chip bg-surface-container-high text-on-surface-variant;
+	}
+
+	.chip-error {
+		@apply chip bg-error text-on-error;
+	}
+
+	/* ── 구분선 ──────────────────────────────── */
+	.divider {
+		@apply h-px bg-outline-variant;
+	}
+
+	/* ── 하단 네비 ───────────────────────────── */
+	.bottom-nav {
+		@apply fixed bottom-0 left-0 right-0 z-50
+           bg-surface-container-lowest/90 backdrop-blur-sm
+           shadow-bottom-nav max-w-md mx-auto;
+	}
+}
+
+@layer utilities {
+	.safe-bottom {
+		padding-bottom: env(safe-area-inset-bottom, 16px);
+	}
+
+	.safe-top {
+		padding-top: env(safe-area-inset-top, 0px);
+	}
+
+	/* 모바일 최대 너비 고정 */
+	.mobile-container {
+		@apply max-w-md mx-auto w-full relative;
+	}
+
+	/* 스크롤바 숨김 */
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* 텍스트 ellipsis */
+	.text-ellipsis-1 {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+	.text-ellipsis-2 {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+}
